@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>History Manipulation</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    </head>
+    <body>
+        <div clas="row">
+            <div class="col-md-6 col-md-offset-3" style="padding-top: 30px;">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">History Manipulation</div>
+                    <div class="panel-body">
+                        
+                        <div id="tab1">
+                            <div>Thats the First Page</div>
+                            <button id="button" class="btn btn-primary pull-right"> Go to the Second Page</button>
+                        </div>
+
+                        <div id="tab2" style="display: none;">
+                            <div>Thats the Second Page - To return to First Page, use the Browser arrow</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Jquery -->
+        <script src="https://code.jquery.com/jquery-3.4.0.js"></script>
+
+        <!-- Tabs -->
+        <script>
+            $(function(){
+                $('#button').click(function(){
+                    $('#tab1').hide();
+                    $('#tab2').show();
+                    history.pushState({tab: 2}, "Page 2");
+                });
+
+                window.onpopstate = function(event) {
+                    $('#tab1').show();
+                    $('#tab2').hide();
+                }
+            });
+        </script>
+    </body>
+</html>
